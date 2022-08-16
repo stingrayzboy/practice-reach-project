@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
-import Card from "./Components/UI/Card";
 import AddUser from "./Components/Users/AddUser";
-import User from "./Components/Users/User";
 import UserList from "./Components/Users/UserList";
 
 const SEED_USERS = [
