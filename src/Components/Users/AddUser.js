@@ -16,6 +16,13 @@ const AddUser = (props) => {
 
   const formHandler = (event) => {
     event.preventDefault();
+    if (
+      name.trim().length === 0 ||
+      age.trim().length === 0 ||
+      parseInt(age.trim()) < 1
+    ) {
+      return;
+    }
     const data = {
       name: name,
       age: age,

@@ -3,6 +3,7 @@ import "./App.css";
 import Card from "./Components/UI/Card";
 import AddUser from "./Components/Users/AddUser";
 import User from "./Components/Users/User";
+import UserList from "./Components/Users/UserList";
 
 const SEED_USERS = [
   { name: "Faraz", age: 12, id: Math.random() },
@@ -21,12 +22,10 @@ const App = () => {
 
   return (
     <>
-    <Card>
-      <AddUser addUser={addUser} />
-    </Card>
-      {users.map((user) => {
-        return <User key={user.id} details={user} />;
-      })}
+      <div>
+        <AddUser addUser={addUser} />
+        <UserList users={users} />
+      </div>
     </>
   );
 };
