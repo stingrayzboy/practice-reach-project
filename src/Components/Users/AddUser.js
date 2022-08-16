@@ -4,9 +4,8 @@ import Card from "../UI/Card";
 import Modal from "../UI/Modal";
 import classes from "./AddUser.module.css";
 const AddUser = (props) => {
-  const nameRef = useRef()
-  const ageRef = useRef()
-
+  const nameRef = useRef();
+  const ageRef = useRef();
 
   // const [name, setName] = useState("");
   // const [age, setAge] = useState("");
@@ -22,8 +21,8 @@ const AddUser = (props) => {
 
   const formHandler = (event) => {
     event.preventDefault();
-    const enteredName = nameRef.current.value
-    const enteredAge = ageRef.current.value
+    const enteredName = nameRef.current.value;
+    const enteredAge = ageRef.current.value;
 
     if (
       enteredName.trim().length === 0 ||
@@ -31,9 +30,9 @@ const AddUser = (props) => {
       parseInt(enteredAge.trim()) < 1
     ) {
       setError({
-        title: 'Invalid Input',
-        message: "Please Enter a valid Input"
-      })
+        title: "Invalid Input",
+        message: "Please Enter a valid Input",
+      });
       return;
     }
     const data = {
@@ -41,19 +40,23 @@ const AddUser = (props) => {
       age: enteredAge,
     };
     props.addUser(data);
-    nameRef.current.value = ''
-    ageRef.current.value = ''
+    nameRef.current.value = "";
+    ageRef.current.value = "";
     // setName("");
     // setAge("");
   };
 
   const resetModal = () => {
-    setError(undefined)
-  }
+    setError(undefined);
+  };
 
   return (
     <React.Fragment>
-      {error ? <Modal title={error.title} message={error.message} reset={resetModal}/> : ''}      
+      {error ? (
+        <Modal title={error.title} message={error.message} reset={resetModal} />
+      ) : (
+        ""
+      )}
       <Card className={classes.input}>
         <form onSubmit={formHandler}>
           <label htmlFor="userName">User Name</label>
@@ -61,7 +64,6 @@ const AddUser = (props) => {
             type="text"
             id="username"
             placeholder="Your Name"
-            
             ref={nameRef}
           />
           <label htmlFor="userAge">User Age</label>
@@ -69,7 +71,6 @@ const AddUser = (props) => {
             type="number"
             id="userage"
             placeholder="Your Age"
-            
             ref={ageRef}
           />
           <Button type="submit"> Add User</Button>
