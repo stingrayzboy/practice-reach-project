@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import AddUser from "./Components/Users/AddUser";
+import User from "./Components/Users/User";
 
-function App() {
+const SEED_USERS = [
+  { name: "Faraz", age: 12, id: Math.random() },
+  { name: "Shabana", age: 13, id: Math.random() },
+];
+
+const App = () => {
+  const [users, setUsers] = useState(SEED_USERS);
+  const addUser = (user) => {
+    setUsers((prevData) => {
+      const updated = [...prevData];
+      updated.unshift({ ...user, id: Math.random() });
+      return updated;
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <AddUser addUser={addUser} />
+      {users.map((user) => {
+        return <User key={user.id} details={user} />;
+      })}
+    </>
   );
-}
+};
 
 export default App;
