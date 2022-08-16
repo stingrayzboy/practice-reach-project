@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import Card from "./Components/UI/Card";
 import AddUser from "./Components/Users/AddUser";
 import User from "./Components/Users/User";
 
@@ -20,7 +21,9 @@ const App = () => {
 
   return (
     <>
+    <Card>
       <AddUser addUser={addUser} />
+    </Card>
       {users.map((user) => {
         return <User key={user.id} details={user} />;
       })}
